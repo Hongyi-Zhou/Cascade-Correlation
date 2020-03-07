@@ -13,7 +13,7 @@ x2, y2 = [(th/4 + 0.8)*np.cos(th), (th/4 + 0.8)*np.sin(th)]
 
 ## generating training data
 train_data = np.concatenate((np.array([x1,y1]),np.array([x2,y2])), axis = 1).T
-train_labels = np.concatenate((-1*np.ones(data_size), np.ones(data_size))).reshape((2*data_size, 1))
+train_labels = np.concatenate((np.zeros(data_size), np.ones(data_size))).reshape((2*data_size, 1))
 
 fig = plt.figure()
 plt.scatter(x1,y1, marker = 'x', color = 'green', s = 40, linewidth = 2, label = '$C_1$')
@@ -45,7 +45,7 @@ x2, y2 = [(th2/4 + 0.8)*np.cos(th2), (th2/4 + 0.8)*np.sin(th2)]
 
 ## validaton data
 test_data = np.concatenate((np.array([x1,y1]),np.array([x2,y2])), axis = 1).T
-test_labels = np.concatenate((-1*np.ones(test_size), np.ones(test_size))).reshape((2*test_size, 1))
+test_labels = np.concatenate((np.zeros(test_size), np.ones(test_size))).reshape((2*test_size, 1))
 
 ## saving data
 np.savez('data.npz', train_data = train_data, train_labels = train_labels,
