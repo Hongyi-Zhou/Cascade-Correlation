@@ -1,13 +1,9 @@
-# Do not import any additional 3rd party external libraries as they will not
-# be available to AutoLab and are not needed (or allowed)
-
 import numpy as np
 
 
 class Conv1D():
     def __init__(self, in_channel, out_channel, kernel_size, stride,
                  weight_init_fn=None, bias_init_fn=None):
-        # Do not modify this method
         self.in_channel = in_channel
         self.out_channel = out_channel
         self.kernel_size = kernel_size
@@ -44,31 +40,7 @@ class Conv1D():
         batch_size, in_channel, input_size = x.shape
         self.input_size = input_size
         output_size = int((input_size - self.kernel_size)/self.stride) + 1
-        '''
-        i0 = np.repeat(np.arange(self.kernel_size), self.in_channel)
-        i1 = self.stride * np.repeat(np.arange(output_size),1)
-        i = i0.reshape(-1,1) + i1.reshape(1,-1)
-
-        k = np.repeat(np.arange(self.in_channel), self.kernel_size).reshape(-1, 1)
-
-        print(i0,i1)
-        print(i)
-
-        #print(k)
-        x_intermediate = x[:,k,i]
-        #print(x_intermediate)
-        X_ = x_intermediate.transpose(1,2,0).reshape(self.kernel_size * self.in_channel, -1)
-
-        W_ = self.W.reshape(self.out_channel, -1)
-
-        print(W_.shape)
-        print(X_.shape)
-        out = (W_ @ X_).T + self.b
-
-        out = out.reshape(self.out_channel, output_size, batch_size)
-        out = out.transpose(2, 0, 1)
-        print(out.shape)
-        '''
+        
         out = np.zeros((batch_size, self.out_channel, output_size))
         for i in range(batch_size):
             for j in range(self.out_channel):
